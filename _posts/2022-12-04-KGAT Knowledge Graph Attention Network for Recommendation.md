@@ -18,7 +18,6 @@ toc_sticky: true
 
 ---
 
-## KGAT Knowledge Graph Aention Network for Recommendation
 
 <br/>
 
