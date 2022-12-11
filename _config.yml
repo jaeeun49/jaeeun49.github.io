@@ -108,7 +108,7 @@ analytics:
 # Site Author
 author:
   name             : "Jaeeun Jeong"
-  avatar           : "/assets/images/jaeeun.JPG"
+  avatar           : "https://jaeeun49.github.io/assets/images/jaeeun.JPG"
   bio              : "I am an **amazing** person."
   location         : "South Korea"
 #   email            : ""
