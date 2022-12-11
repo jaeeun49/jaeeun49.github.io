@@ -48,7 +48,7 @@ CF 방식은 여러 사용자들로부터 얻은 정보를 이용해 사용자�
 
 <img src="https://jaeeun49.github.io/images/KGAT/FM.png">
 
-factorization machine의 feature vector x를 보여주고 있습니다. user의 one-hot vector, item의 one-hot vector, user가 평가한 다른 item의 평점, 해당 item을 평가하기 바로 직전 평가한 item에 대한 정보 등 side information을 반영해 모델링 하여 높은 성능을 보여주었습니다. 하지만 이러한 SL 모델은 각각의 interation을 독립적으로 보아 연결관계를 고려하지 않습니다. 
+factorization machine의 feature vector x를 보여주고 있습니다. user의 one-hot vector, item의 one-hot vector, user가 평가한 다른 item의 평점, 해당 item을 평가하기 바로 직전 평가한 item에 대한 정보 등 side information을 반영해 모델링 하여 높은 성능을 보여주었습니다. 하지만 이러한 SL 모델은 각각의 interation을 독립적으로 보아 연결관계를 고려하지 못하는 단점을 가지고 있습니다.
 
 <br/>
 
@@ -104,15 +104,15 @@ KGAT 모델의 framework를 보여주고 있고 3가지 요소로 구성되어 �
 <img src="https://jaeeun49.github.io/images/KGAT/transE.png">
 - 출처: https://wigo.tistory.com/entry/KG3-Translation-Model-for-KC
 
-tansR을 보기 전에 TransE를 먼저 보면 head entity 와 relation의 벡터를 더하면 tail entity의 벡터가 된다는 접근 방식을 사용하고 있습니다. 즉, 위의 figure2 예시로 적용해 보면 u1 vector + r1 vector = i1 vector 가 됩니다. 
+tansR을 보기 전에 TransE를 먼저 보면 head entity 와 relation의 벡터를 더하면 tail entity의 벡터가 된다는 접근 방식을 사용하고 있습니다. 즉, 위의 collaborative knowledge graph의 예시로 적용해 보면 u1 vector + r1 vector = i1 vector 가 됩니다. 
 
 <img src="https://jaeeun49.github.io/images/KGAT/tansR.png">
 
 <img src="https://jaeeun49.github.io/images/KGAT/transR2.png">
 
-eh,et,er은 각각 h(head),t(tail),r(relation)의 임베딩 벡터를 표현하는 것이고 transR은 eh,et을 relation 공간으로 투영해 Entity와 Relation을 동일한 차원에 표현되는 것을 개선하였습니다. 이는 TransE의 문제점을 개선하기 위함인데 TransE의 경우 u1 vector + r1 vector = u4 vector + r1 vector = u5 vector + r1 vector = i1 vector 가 성립되지만 다른 relation에 적용한다면 문제가 생길 수 있습니다. 그래서 위 식에서 보이는 Wr는 relation r에 대한 transformation matrix이 되어 eh와 et를 각 relation 공간으로 투영해줍니다. 
+eh,et,er은 각각 h(head),t(tail),r(relation)의 임베딩 벡터를 표현하는 것이고 transR은 eh,et을 relation 공간으로 투영해 Entity와 Relation을 동일한 차원에 표현되는 것을 개선하였습니다. 이는 TransE의 문제점을 개선하기 위함인데 TransE의 경우 u1 vector + r1 vector = u4 vector + r1 vector = u5 vector + r1 vector = i1 vector 가 성립되어 u1 vector = u4 vector = u5 vector가 성립되지만 다른 relation에 적용한다면 문제가 생길 수 있습니다. 그래서 위 식에서 보이는 Wr는 relation r에 대한 transformation matrix이 되어 eh와 et를 각 relation 공간으로 투영해줍니다. 
 
-그리고 embedding layer 학습 방법은 다음과 같은 pairwise ranking loss를 이용합니다. g(h,r,t)이 실제 정답 triple을 표현한다면 g(h,r,t0)은 하나의 entity를 틀린 값으로 대체해 그 차이를 이용해 학습합니다.
+그리고 이때 embedding layer 학습 방법은 다음과 같은 pairwise ranking loss를 이용합니다. g(h,r,t)이 실제 정답 triple을 표현한다면 g(h,r,t0)은 하나의 entity를 틀린 값으로 대체해 그 차이를 이용해 학습합니다.
 
 <img src="https://jaeeun49.github.io/images/KGAT/trainembedding.png">
 
