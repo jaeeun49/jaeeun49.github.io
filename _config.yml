@@ -11,28 +11,28 @@
 # https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/#installing-the-theme
 
 # theme                  : "minimal-mistakes-jekyll"
-# remote_theme           : "mmistakes/minimal-mistakes"
-minimal_mistakes_skin    : "custom2" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise", "default"
+remote_theme           : "mmistakes/minimal-mistakes"
+minimal_mistakes_skin    : "default" #"neon", "air", "aqua", "contrast", "dirt", "dark", "mint", "plum", "sunrise"
 
 # Site Settings
 locale                   : "en-US"
 title                    : "Jaeeun's DevLog"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
-name                     : "Jeong Jaeeun"
-description              : "An amazing website."
-url                      : "https://jaeeun49.github.io" # the base hostname & protocol for your site e.g. 
-baseurl                  : # the subpath of your site, e.g. "/blog"
-repository               : "jaeeun49/jaeeun49.github.io" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
+name                     : "Jaeeun Jeong"
+description              : "Jaeeun's DevLog."
+url                      : "https://jaeeun49.github.io"# the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+baseurl                  : ""# the subpath of your site, e.g. "/blog"
+repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 logo                     : # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
 masthead_title           : # overrides the website title displayed in the masthead, use " " for no title
-# breadcrumbs            : false # true, false (default) 
+# breadcrumbs            : false # true, false (default)
 words_per_minute         : 200
 comments:
-  provider               : "disqus" # false (default), "disqus", "discourse", "facebook", "staticman", "staticman_v2", "utterances", "custom"
+  provider               : # false (default), "disqus", "discourse", "facebook", "staticman", "staticman_v2", "utterances", "custom"
   disqus:
-    shortname            : "jaeeun's-blog" # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
+    shortname            : # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
   discourse:
     server               : # https://meta.discourse.org/t/embedding-discourse-comments-via-javascript/31963 , e.g.: meta.discourse.org
   facebook:
@@ -99,38 +99,38 @@ social:
 
 # Analytics
 analytics:
-  provider               : "google" # false (default), "google", "google-universal", "custom"
+  provider               : false # false (default), "google", "google-universal", "custom"
   google:
-    tracking_id          : "UA-168677213-1"
-    anonymize_ip         : fasle # true, false (default)
+    tracking_id          :
+    anonymize_ip         : # true, false (default)
 
 
 # Site Author
 author:
-  name             : "Jeong Jaeeun"
+  name             : "Jaeeun Jeong"
   avatar           : "https://user-images.githubusercontent.com/76995436/206888756-67a6cd7b-ec10-4346-a0ab-9c93e43f6a99.jpg"
   bio              : "I am an **amazing** person."
   location         : "South Korea"
-  email            : 
+#   email            : ""
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
       url: mailto:today1255@gmail.com
     - label: "Website"
       icon: "fas fa-fw fa-link"
-      # url: "https://your-website.com"
+      url: "github.io.jaeeun49"
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
       # url: "https://twitter.com/"
     - label: "Facebook"
       icon: "fab fa-fw fa-facebook-square"
-      # url: "https://facebook.com/"
+#       url: ""
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/jaeeun49"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
-#       url: ""
+      # url: "https://instagram.com/"
 
 # Site Footer
 footer:
@@ -143,7 +143,7 @@ footer:
       # url:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      url: "https://github.com/jaeeun49"
+      # url:
     - label: "GitLab"
       icon: "fab fa-fw fa-gitlab"
       # url:
@@ -152,7 +152,7 @@ footer:
       # url:
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
-#       url: ""
+      # url:
 
 
 # Reading Files
@@ -180,7 +180,6 @@ exclude:
   - log
   - node_modules
   - package.json
-  - package-lock.json
   - Rakefile
   - README
   - tmp
@@ -254,22 +253,22 @@ whitelist:
 #  - <base_path>/categories/my-awesome-category/index.html ~> path: /categories/
 #  - <base_path>/my-awesome-category/index.html ~> path: /
 category_archive:
-  type: jekyll-archives
+  type: liquid
   path: /categories/
 tag_archive:
-  type: jekyll-archives
+  type: liquid
   path: /tags/
 # https://github.com/jekyll/jekyll-archives
-jekyll-archives:
-   enabled:
-     - categories
-     - tags
-   layouts:
-     category: archive-taxonomy
-     tag: archive-taxonomy
-   permalinks:
-     category: /categories/:name/
-     tag: /tags/:name/
+# jekyll-archives:
+#   enabled:
+#     - categories
+#     - tags
+#   layouts:
+#     category: archive-taxonomy
+#     tag: archive-taxonomy
+#   permalinks:
+#     category: /categories/:name/
+#     tag: /tags/:name/
 
 
 # HTML Compression
@@ -290,15 +289,22 @@ defaults:
       layout: single
       author_profile: true
       read_time: true
-      comments: true
+      comments:  true
       share: true
       related: true
 
-  # _pages
+ #>>>>>>>>>>>>>>>>>>> 여기서부터 추가 됨
+  # _pages 부분입니다.
   - scope:
       path: "_pages"
       type: pages
     values:
       layout: single
-      classes: wide
       author_profile: true
+  # >>>>>>>>>>>>>>>>>>>> 여기까지 추가 됨
+# Math equation
+markdown: kramdown
+highlighter: rouge
+lsi: false
+excerpt_separator: "\n\n"
+incremental: false
