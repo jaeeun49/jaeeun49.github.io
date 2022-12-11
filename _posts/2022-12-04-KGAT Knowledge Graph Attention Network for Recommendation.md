@@ -1,8 +1,8 @@
 ---
-title: "KGAT Knowledge Graph Aention Network for Recommendation"
-excerpt: '스프링 부트 입문 03, 04'
+title: "[Paper Review]KGAT Knowledge Graph Aention Network for Recommendation"
+excerpt: 'GRAPH NEURAL NETWORKS'
 categories:
-    - Spring Boot
+    - Paper Review
 
 tag:
     - Spring Boot 
