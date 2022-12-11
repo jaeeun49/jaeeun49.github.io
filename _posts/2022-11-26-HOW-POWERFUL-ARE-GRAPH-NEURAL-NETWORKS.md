@@ -1,12 +1,23 @@
 ---
-layout: post
-title: HOW POWERFUL ARE GRAPH NEURAL NETWORKS?
+title: "[Paper Review] HOW POWERFUL ARE GRAPH NEURAL NETWORKS."
+excerpt: 'GRAPH NEURAL NETWORKS'
+categories:
+    - [Paper Review]
+
+tag:
+    - Spring Boot 
+    - JAVA
+
+author_profile: true    #작성자 프로필 출력 여부
+
+last_modified_at: 2022-12-11T15:46:00+09:00
+
+toc: true   #Table Of Contents 목차 
+
+toc_sticky: true
+
 ---
 
-Next you can update your site name, avatar and other options using the _config.yml file in the root of your repository (shown below).
-
-
----
 
 #### 목차
 
