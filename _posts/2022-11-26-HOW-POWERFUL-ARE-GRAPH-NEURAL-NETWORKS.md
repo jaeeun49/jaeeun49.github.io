@@ -2,11 +2,10 @@
 title: "[Paper Review] HOW POWERFUL ARE GRAPH NEURAL NETWORKS."
 excerpt: 'GRAPH NEURAL NETWORKS'
 categories:
-    - [Paper Review]
+    - Paper Review
 
 tag:
-    - Spring Boot 
-    - JAVA
+    - GNN
 
 author_profile: true    #작성자 프로필 출력 여부
 
