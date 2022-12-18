@@ -109,7 +109,7 @@ analytics:
 author:
   name             : "Jaeeun Jeong"
   avatar           : "https://user-images.githubusercontent.com/76995436/206888756-67a6cd7b-ec10-4346-a0ab-9c93e43f6a99.jpg"
-  bio              : "Data Scientist in Somewhere"
+  bio              : "**Data Scientist** in Somewhere"
   location         : "South Korea"
 #   email            : ""
   links:
@@ -118,7 +118,7 @@ author:
       url: mailto:today1255@gmail.com
     - label: "Website"
       icon: "fas fa-fw fa-link"
-      url: "github.io.jaeeun49"
+      url: "https://jaeeun49.github.io/"
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
       # url: "https://twitter.com/"
