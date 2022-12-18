@@ -22,15 +22,15 @@ toc_sticky: true
 
 #### 목차
 
-- [1.INTRODUCTION](### 1.INTRODUCTION)
+- [1.INTRODUCTION](## 1.INTRODUCTION)
     - 1.1 Collaborative Filtering/SL model 의 한계
     - 1.2 Knowledge Graph Attention Network (KGAT)
-- [2. METHODOLOGY](### 2. METHODOLOGY)
+- [2. METHODOLOGY](## 2. METHODOLOGY)
     - 2.1 embedding layer
     - 2.2 Attentive Embedding Propagation Layers
     - 2.3 Model Prediction
     - 2.4 Optimization
-- [3. EXPERIMENTS](### 3. EXPERIMENTS)
+- [3. EXPERIMENTS](## 3. EXPERIMENTS)
     - 3.1 Dataset
     - 3.2 Performance Comparison (Q1)
     - 3.3 Study of KGAT (Q2)
