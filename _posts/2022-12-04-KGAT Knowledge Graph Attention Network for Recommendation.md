@@ -141,14 +141,115 @@ eh,et,er은 각각 h(head),t(tail),r(relation)의 임베딩 벡터를 표현하�
 
 #### Model Prediction
 
-<br/>
+위의 과정을 L layer 거치고 나면 1~L개의 유저 노드와 아이템 노드에 대한 표현벡터를 얻게 됩니다. 그래서 각각의 단계에서의 표현 벡터들을 하나의 벡터로 결합해주기 위한 layer-aggregation mechanism을 다음과 같이 채택하였습니다. 
+
+<img src="https://jaeeun49.github.io/images/KGAT/model_prediction.png">
+
+<img src="https://jaeeun49.github.io/images/KGAT/model_prediction.png">
+
+마지막으로 유저와 아이템 표현벡터의 내적을 수행함으로써 유저가 그 아이템을 선호할 점수(matching score)를 예측할 수 있게 됩니다. 
 
 <br/>
 
+<br/>
+
+#### Optimization
+
+<img src="https://jaeeun49.github.io/images/KGAT/optimization.png">
+
+- (u,i)는 유저와 아이템 사이의 관찰된 상호작용(positive interaction)을 나타냄
+- (u,j)는 유저와 아이템 사이의 관찰되지 않은 상호작용(negative interaction)을 나타냄
+
+<img src="https://jaeeun49.github.io/images/KGAT/trainembedding.png">
+
+---
+
+위의 두 방정식에 대해 각각 학습 할 수 있도록 다음과 같은 목적함수를 만들 수 있습니다. 이 식에서 마지막 부분에서 수행되는 L2 정규화는 오버피팅을 예방하기 위함입니다.
+
+<img src="https://jaeeun49.github.io/images/KGAT/optimization.png">
+
+- mini-batch Adam을 이용해 KG와 CF 각각을 최적화 합니다. 
+
+
+<br/>
+
+<br/>
 
 ### 3.EXPERIMENTS
 ---
 
+다음 세가지 질문의 답을 찾아가는 목적으로 실험을 진행하였습니다.
+Q1. KGAT는 sota 추천모델과 비교할 때 얼마나 잘 수행하는가?
+Q2. 모델의 구성요소들이 어떻게 KGAT에 영향을 주는가?
+Q3. KGAT는 유저의 아이템에 대한 선호를 근거있게 설명할 수 있는가?
+
+#### 3.1 Dataset
+
+<img src="https://jaeeun49.github.io/images/KGAT/experiment_dataset.png">
+
+1. Amazon-book
+2. Last-FM
+3. Yelp2018
+
+<br/>
+
+
+#### 3.2 Performance Comparison (Q1)
+
+<img src="https://jaeeun49.github.io/images/KGAT/experiment_q1.png">
+
+<img src="https://jaeeun49.github.io/images/KGAT/experiment_q1_2.png">
+
+- KGAT는 세 dataset에서 항상 가장 좋은 성능을 보여주고 있습니다. 
+- KG를 사용하는 이유 중 하나는 sparse한 문제를 완화해 준다는 것입니다. 그래서 위의 그래프 그림에서 볼 수 있듯이 각각의 dataset를 sparse한 정도(유저마다 상호작용 수에 기반한)에 따라 4분류의 유저 그룹으로 나누어 실험을 하였습니다.
+- KGAT는 Amazon과 Yelp 데이터셋에서 특히나 sparse한 두 유저 그룹에서 다른 모델에 비해 상당히 높은 성능을 보이고 있있습니다.  
+- 그에 반해 밀집한 유저 그룹(Yelp2018에 <2057)에 대해서는 살짝 높은 성능을 보이고 있습니다. 이것에 대한 한가지 가능한 이유는 많은 상호작용을 가진 그룹에 대한 선호도 예측은 파악하기에 일반적이라는 것입니다. 
+
+<br/>
+
+#### 3.2 Study of KGAT (Q2)
+
+두번째 질문인 KGAT의 각 구성요소의 영향을 보기 위해 첫번째로 embedding propagation layer에 대해 실험하였습니다.
+
+<img src="https://jaeeun49.github.io/images/KGAT/experiment_q2.png">
+
+- KGAT의 depth를 늘릴 수록 성능은 상당히 좋아집니다.
+- KGAT-3에서 층 하나를 더 쌓았을때 유일하게 소량의 성능 증가를 보이고 있습니다. 즉, 개체들 사이에 third-order relation을 고려하는 것이 개체들 사이의 신호를 파악하기에 충분할 수 있다는 것을 보여줍니다.  
+
+<br/>
+
+두번째로는 aggregator의 영향을 실험하였습니다. 
+
+<img src="https://jaeeun49.github.io/images/KGAT/experiment_q2_2.png">
+
+- GCN 이 GraphSage보다 모든 경우에 대해 성능이 좋습니다. 한가지 가능한 이유는 GraphSage는 head 표현벡터와 ego-network 표현벡터 사이의 상호작용을 포기했기 때문이라는 것입니다. 
+- GCN과 비교해 Bi-Interation의 성능은 추가적인 변수들의 상호작용이 표현벡터의 학습을 향상시킬 수 있다는 것을 증명하고 있습니다. 
+
+<br/>
+
+세번째로는  knowledge graph embedding와 attention 효과를 실험하고 있습니다.
+
+<img src="https://jaeeun49.github.io/images/KGAT/experiment_q2_3.png">
+
+- 첫번째 열에서 알 수 있듯이 knowledge graph embedding과 attention을 모두 제거하면 모델의 성능이 매우 많이 떨어집니다. 
+- attention을 제외하는 것보다 knowledge graph embedding을 제외하는 것이 모든 실험에 대해 성능이 더 좋습니다. 한가지 가능한 이유로는 모든 이웃 노드를 똑같은 가중치로 전달 하는 것이 noise를 만들어 잘못 전달 할 수 있다는 것입니다. 
+
+<br/>
+
+
+#### 3.2 Study of KGAT (Q3)
+
+
+<img src="https://jaeeun49.github.io/images/KGAT/experiment_q3.png">
+
+attention mechanism 덕분에 각 아이템에 대한 유저의 선호도를 추론할 수 있습니다. 이를 보기 위해 랜덤으로 유저208를 선택해 하나의 아이템 i4293을 선택하였습니다. 그래서 attention score에 기반해 유저와 아이템 사이의 행동과 속성에 기반한 high-order connectivity을 추출할 수 있습니다. 
+
+
 <br/>
 
 <br/>
+
+
+
+
+
