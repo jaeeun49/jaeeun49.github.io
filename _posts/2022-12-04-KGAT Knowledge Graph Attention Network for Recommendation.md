@@ -22,15 +22,15 @@ toc_sticky: true
 
 #### 목차
 
-- [1.INTRODUCTION](## 1.INTRODUCTION)
+- [1.INTRODUCTION](### 1.INTRODUCTION)
     - 1.1 Collaborative Filtering/SL model 의 한계
     - 1.2 Knowledge Graph Attention Network (KGAT)
-- [2. METHODOLOGY](## 2. METHODOLOGY)
+- [2. METHODOLOGY](### 2. METHODOLOGY)
     - 2.1 embedding layer
     - 2.2 Attentive Embedding Propagation Layers
     - 2.3 Model Prediction
     - 2.4 Optimization
-- [3. EXPERIMENTS](## 3. EXPERIMENTS)
+- [3. EXPERIMENTS](### 3. EXPERIMENTS)
     - 3.1 Dataset
     - 3.2 Performance Comparison (Q1)
     - 3.3 Study of KGAT (Q2)
@@ -40,10 +40,10 @@ toc_sticky: true
 <br/>
 
 
-## 1.INTRODUCTION
+### 1.INTRODUCTION
 ---
 
-### 1.1 Collaborative Filtering/SL model 의 한계
+#### 1.1 Collaborative Filtering/SL model 의 한계
 
 <img src="https://jaeeun49.github.io/images/KGAT/CF.png"> 
 
@@ -75,7 +75,7 @@ factorization machine의 feature vector x를 보여주고 있습니다. user의 
 
 <br/>
 
-### 1.2 Knowledge Graph Attention Network (KGAT)
+#### 1.2 Knowledge Graph Attention Network (KGAT)
 
 그래서 저자는 이러한 high-order relation을 모델링하는데 있어 어려움을 해결하기 위해 two designs으로 구성된 Knowledge Graph Attention Network (KGAT)을 제안하고 있습니다.
 
@@ -89,7 +89,7 @@ factorization machine의 feature vector x를 보여주고 있습니다. user의 
 
 
 
-## 2.METHODOLOGY
+### 2.METHODOLOGY
 ---
 
 <img src="https://jaeeun49.github.io/images/KGAT/figure2.png">
@@ -102,7 +102,7 @@ KGAT 모델의 framework를 보여주고 있고 3가지 요소로 구성되어 �
 
 <br/>
 
-### 2.1 embedding layer
+#### 2.1 embedding layer
 
 우선 Knowledge graph의 Entity와 Relation 을 벡터로 표현하는 것이 필요합니다. 저자들은 이 과정에서 TransR 방법을 사용하고 있는데, 벡터 공간에 표현된 트리플 <Head, Relation, Tail>을 더하기, 곱하기 등의 연산을 사용해 표현하는 방법 중 하나입니다. 
 
@@ -125,7 +125,7 @@ eh,et,er은 각각 h(head),t(tail),r(relation)의 임베딩 벡터를 표현하�
 
 <br/>
 
-### 2.2 Attentive Embedding Propagation Layers
+#### 2.2 Attentive Embedding Propagation Layers
 
 두번째 레이어가 graph attention network를 이용해 연결성의 중요도를 반영하기 위한 attentive weights를 만들어 주는 부분입니다. 논문에서는 일단 single layer로 먼저 설명하고 세가지 요소로 나누어 설명하고 있습니다. 
 
@@ -144,7 +144,7 @@ eh,et,er은 각각 h(head),t(tail),r(relation)의 임베딩 벡터를 표현하�
 
 <br/>
 
-### 2.3 Model Prediction
+#### 2.3 Model Prediction
 
 위의 과정을 L layer 거치고 나면 1~L개의 유저 노드와 아이템 노드에 대한 표현벡터를 얻게 됩니다. 그래서 각각의 단계에서의 표현 벡터들을 하나의 벡터로 결합해주기 위한 layer-aggregation mechanism을 다음과 같이 채택하였습니다. 
 
@@ -158,7 +158,7 @@ eh,et,er은 각각 h(head),t(tail),r(relation)의 임베딩 벡터를 표현하�
 
 <br/>
 
-### 2.4 Optimization
+#### 2.4 Optimization
 
 <img src="https://jaeeun49.github.io/images/KGAT/optimization.png">
 
@@ -180,7 +180,7 @@ eh,et,er은 각각 h(head),t(tail),r(relation)의 임베딩 벡터를 표현하�
 
 <br/>
 
-## 3.EXPERIMENTS
+### 3.EXPERIMENTS
 ---
 
 다음 세가지 질문의 답을 찾아가는 목적으로 실험을 진행하였습니다.
@@ -188,7 +188,7 @@ Q1. KGAT는 sota 추천모델과 비교할 때 얼마나 잘 수행하는가?
 Q2. 모델의 구성요소들이 어떻게 KGAT에 영향을 주는가?
 Q3. KGAT는 유저의 아이템에 대한 선호를 근거있게 설명할 수 있는가?
 
-### 3.1 Dataset
+#### 3.1 Dataset
 
 <img src="https://jaeeun49.github.io/images/KGAT/experiment_dataset.png">
 
@@ -199,7 +199,7 @@ Q3. KGAT는 유저의 아이템에 대한 선호를 근거있게 설명할 수 �
 <br/>
 
 
-### 3.2 Performance Comparison (Q1)
+#### 3.2 Performance Comparison (Q1)
 
 <img src="https://jaeeun49.github.io/images/KGAT/experiment_q1.png">
 
@@ -212,7 +212,7 @@ Q3. KGAT는 유저의 아이템에 대한 선호를 근거있게 설명할 수 �
 
 <br/>
 
-### 3.3 Study of KGAT (Q2)
+#### 3.3 Study of KGAT (Q2)
 
 두번째 질문인 KGAT의 각 구성요소의 영향을 보기 위해 첫번째로 embedding propagation layer에 대해 실험하였습니다.
 
@@ -242,7 +242,7 @@ Q3. KGAT는 유저의 아이템에 대한 선호를 근거있게 설명할 수 �
 <br/>
 
 
-### 3.4 Study of KGAT (Q3)
+#### 3.4 Study of KGAT (Q3)
 
 
 <img src="https://jaeeun49.github.io/images/KGAT/experiment_q3.png">
